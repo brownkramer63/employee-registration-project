@@ -36,11 +36,15 @@ public class EmployeeController {
     public String insertEmployee(@ModelAttribute("employee") Employee employee){//will capture objects sent from ui
 
         employeeService.saveEmployee(employee);
+
+        return "redirect:/employee/list";
+
+    }
+
+    @GetMapping("/list")
+    public String listEmployees(Model model){
+        model.addAttribute("employeeList", employeeService.readAllEmployees());
         return "employee/employee-list";
-
-
-
-
     }
 
 
